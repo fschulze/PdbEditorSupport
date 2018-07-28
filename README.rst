@@ -91,3 +91,13 @@ Acknowledgments
 
 This module is based on ``PdbSublimeTextSupport`` by Martin Aspeli, which in
 turn is based on ``PdbTextMateSupport`` by Andi Zeidler and others.
+
+
+Changes
+=======
+
+0.3.0 (2018-07-28)
+------------------
+
+- Initial release after fork from PdbSublimeTextSupport and PdbTextMateSupport.
+  [fschulze]
