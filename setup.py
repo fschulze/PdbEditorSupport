@@ -4,15 +4,15 @@ from setuptools import setup
 README = open('README.rst', 'rb').read().decode('utf-8')
 
 
-setup(name = 'PdbSublimeTextSupport',
+setup(name = 'PdbEditorSupport',
       version = '0.3',
-      description = 'Display source code in Sublime Text while debugging with pdb.',
-      keywords = 'sublimetext pdb',
-      author = 'Martin Aspeli',
-      author_email = 'optilude@gmail.com',
-      url = 'http://pypi.python.org/pypi/PdbSublimeTextSupport',
+      description = 'Display source code in your editor while debugging with pdb.',
+      keywords = 'editor pdb sublimetext textmate',
+      author = 'Florian Schulze',
+      author_email = 'mail@florian-schulze.net',
+      url = 'https://github.com/fschulze/PdbEditorSupport',
       license = 'GPL',
-      py_modules = ['PdbSublimeTextSupport'],
+      py_modules = ['PdbEditorSupport'],
       include_package_data = False,
       platforms = 'Mac OS X',
       classifiers = [
