@@ -1,11 +1,12 @@
-from setuptools import setup, find_packages
+from setuptools import setup
+
 
 README = open('README.rst', 'rb').read().decode('utf-8')
 
 
 setup(name = 'PdbSublimeTextSupport',
-      version = '0.2',
-      description = 'Display source code in Sublime Text 2 while debugging with pdb.',
+      version = '0.3',
+      description = 'Display source code in Sublime Text while debugging with pdb.',
       keywords = 'sublimetext pdb',
       author = 'Martin Aspeli',
       author_email = 'optilude@gmail.com',

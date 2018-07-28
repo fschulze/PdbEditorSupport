@@ -1,27 +1,25 @@
 This module is used to hook up``pdb``, the python debugger, with
-Sublime Text 2, enabling it to display the debugged source code during
+Sublime Text, enabling it to display the debugged source code during
 a``pdb``session.
 
-After downloading and unpacking the package, you should install the
-helper module using::
+You can install with ``pip``::
 
-    $ python setup.py install
+  $ pip install PdbSublimeTextSupport
 
-You can also do this with ``easy_install``:
+Or download, unpack the package and install with::
 
-    $ easy_install -U PdbSublimeTextSupport
+  $ python setup.py install
 
 Next you need to hook up ``pdb`` with this module by adding the
 following to your ``.pdbrc`` file, which you can create in your home
 directory if it's not there already::
 
-    from PdbSublimeTextSupport import preloop, precmd
-    pdb.Pdb.preloop = preloop
-    pdb.Pdb.precmd = precmd
+  import PdbSublimeTextSupport
+  PdbSublimeTextSupport.patch()
 
-Finally, ensure that you have the ``subl`` command line tool has
+Finally, ensure that the ``subl`` command line tool has
 been installed as per `these instructions
-<http://www.sublimetext.com/docs/2/osx_command_line.html>`_.
+<http://www.sublimetext.com/docs/3/osx_command_line.html>`_.
 
 Afterwards Sublime Text should get started automatically whenever
 you enter a debug session.  The current source line will be
