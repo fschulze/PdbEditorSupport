@@ -6,7 +6,7 @@ README = open('README.rst', 'rb').read().decode('utf-8')
 
 setup(
     name='PdbEditorSupport',
-    version='0.3.0',
+    version='0.3.1.dev0',
     description='Display source code in your editor while debugging with pdb.',
     keywords='editor pdb sublimetext textmate',
     author='Florian Schulze',
