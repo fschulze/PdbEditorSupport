@@ -99,6 +99,9 @@ Changes
 0.3.1 (Unreleased)
 ------------------
 
+- Fix nested pdb.
+  [fschulze]
+
 
 0.3.0 (2018-07-28)
 ------------------

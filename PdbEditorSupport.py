@@ -31,6 +31,8 @@ def set_curindex(self, index):
 
 
 def patch(**kw):
+    if hasattr(pdb.Pdb, '_pdbeditorsupport'):
+        return
     if 'func' in kw and 'editor' in kw:
         print("Both 'func' and 'editor' set for PdbEditorSupport, using 'func'.")
     editor = kw.pop('editor', None)
@@ -66,6 +68,7 @@ def patch(**kw):
     pdb.Pdb._original_precmd = pdb.Pdb.precmd
     pdb.Pdb.preloop = preloop
     pdb.Pdb.precmd = precmd
+    pdb.Pdb._pdbeditorsupport = True
 
 
 def shell(filename, lineno, command, command_args, **kw):
