@@ -1,2 +1,10 @@
+/.pytest_cache/
+/.tox/
+/bin/
+/build/
+/dist/
+/include/
+/lib/
+.pip-selfcheck.json
 *.egg-info
 *.pyc

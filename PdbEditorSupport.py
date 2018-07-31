@@ -1,7 +1,6 @@
 from __future__ import print_function
 from functools import partial
 import os.path
-import pdb
 import subprocess
 
 
@@ -31,7 +30,11 @@ def set_curindex(self, index):
 
 
 def patch(**kw):
-    if hasattr(pdb.Pdb, '_pdbeditorsupport'):
+    _class = kw.pop('_class', None)
+    if _class is None:
+        import pdb
+        _class = pdb.Pdb
+    if hasattr(_class, '_pdbeditorsupport'):
         return
     if 'func' in kw and 'editor' in kw:
         print("Both 'func' and 'editor' set for PdbEditorSupport, using 'func'.")
@@ -63,12 +66,12 @@ def patch(**kw):
         return
     global _launch_editor
     _launch_editor = partial(_launch, func=func, **kw)
-    pdb.Pdb.curindex = property(get_curindex, set_curindex)
-    pdb.Pdb._original_preloop = pdb.Pdb.preloop
-    pdb.Pdb._original_precmd = pdb.Pdb.precmd
-    pdb.Pdb.preloop = preloop
-    pdb.Pdb.precmd = precmd
-    pdb.Pdb._pdbeditorsupport = True
+    _class.curindex = property(get_curindex, set_curindex)
+    _class._original_preloop = _class.preloop
+    _class._original_precmd = _class.precmd
+    _class.preloop = preloop
+    _class.precmd = precmd
+    _class._pdbeditorsupport = True
 
 
 def shell(filename, lineno, command, command_args, **kw):
