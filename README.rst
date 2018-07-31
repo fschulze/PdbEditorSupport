@@ -96,6 +96,13 @@ turn is based on ``PdbTextMateSupport`` by Andi Zeidler and others.
 Changes
 =======
 
+0.4.1 (Unreleased)
+------------------
+
+- Make wheel universal.
+  [fschulze]
+
+
 0.4.0 (2018-07-31)
 ------------------
 
