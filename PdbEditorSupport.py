@@ -7,17 +7,32 @@ import subprocess
 _unset = object()
 
 
+def check_property(self):
+    if hasattr(self, '__dict__'):
+        if 'curindex' in self.__dict__:
+            self._curindex = self.__dict__.pop('curindex')
+            return True
+
+
+def __setattr__(self, key, value):
+    if key in self.__dict__:
+        old = self.__dict__[key]
+    else:
+        old = _unset
+    self.__dict__[key] = value
+    if key == 'curindex' and old != value:
+        _launch_editor(self)
+
+
 def get_curindex(self):
-    if 'curindex' in self.__dict__:
-        self._curindex = self.__dict__.pop('curindex')
+    if check_property(self):
         # the property didn't exist before
         _launch_editor(self)
     return self._curindex
 
 
 def set_curindex(self, index):
-    if 'curindex' in self.__dict__:
-        self.__dict__.pop('curindex')
+    if check_property(self):
         # the property didn't exist before
         _curindex = _unset
     elif hasattr(self, '_curindex'):
@@ -66,11 +81,17 @@ def patch(**kw):
         return
     global _launch_editor
     _launch_editor = partial(_launch, func=func, **kw)
-    _class.curindex = property(get_curindex, set_curindex)
     _class._original_preloop = _class.preloop
     _class._original_precmd = _class.precmd
     _class.preloop = preloop
     _class.precmd = precmd
+    if isinstance(_class, type):
+        # new style class gets the property
+        _class.curindex = property(get_curindex, set_curindex)
+    else:
+        # old style class gets __setattr__
+        if not hasattr(_class, '__setattr__'):
+            _class.__setattr__ = __setattr__
     _class._pdbeditorsupport = True
 
 
@@ -103,5 +124,6 @@ def preloop(self):
 
 
 def precmd(self, line):
+    line = self._original_precmd(line)
     _launch_editor(self)
-    return self._original_precmd(line)
+    return line

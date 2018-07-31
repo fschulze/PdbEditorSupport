@@ -96,8 +96,11 @@ turn is based on ``PdbTextMateSupport`` by Andi Zeidler and others.
 Changes
 =======
 
-0.3.1 (Unreleased)
+0.4.0 (2018-07-31)
 ------------------
+
+- Better Python 2.7 support.
+  [fschulze]
 
 - Fix nested pdb.
   [fschulze]
