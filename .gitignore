@@ -5,6 +5,6 @@
 /dist/
 /include/
 /lib/
-.pip-selfcheck.json
+/pip-selfcheck.json
 *.egg-info
 *.pyc
